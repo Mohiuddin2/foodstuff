@@ -1,0 +1,14 @@
+{
+  "node": {
+    "b86202b3762f03717c5365f33b3fee8c7fd76cb4": {
+      "workers": {
+        "app/meals/share/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22%2Fhome%2Fdev-7%2FDesktop%2FFood%20Stuff%20Final%2Flib%2Factions.js%22%2C%5B%22shareMeal%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/meals/share/page": "action-browser"
+      }
+    }
+  },
+  "edge": {},
+  "encryptionKey": "is0yediPj9ZKXwFXSiBp6C+HMPpwjBJKXg1wKSW2Auo="
+}

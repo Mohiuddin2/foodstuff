@@ -1,5 +1,15 @@
-const sql = require("better-sqlite3");
-const db = sql("meals.db");
+const { Client } = require("pg");
+
+const connectionString = process.env.DATABASE_URL;
+
+const client = new Client({
+  connectionString,
+});
+
+client
+  .connect()
+  .then(() => console.log("Connected to PostgreSQL"))
+  .catch((err) => console.error("Connection error", err.stack));
 
 const dummyMeals = [
   {
@@ -164,38 +174,56 @@ const dummyMeals = [
   },
 ];
 
-db.prepare(
-  `
-   CREATE TABLE IF NOT EXISTS meals (
-       id INTEGER PRIMARY KEY AUTOINCREMENT,
-       slug TEXT NOT NULL UNIQUE,
-       title TEXT NOT NULL,
-       image TEXT NOT NULL,
-       summary TEXT NOT NULL,
-       instructions TEXT NOT NULL,
-       creator TEXT NOT NULL,
-       creator_email TEXT NOT NULL
-    )
-`
-).run();
+const createTableQuery = `
+  CREATE TABLE IF NOT EXISTS mealswithmohi (
+    id SERIAL PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    title TEXT NOT NULL,
+    image TEXT NOT NULL,
+    summary TEXT NOT NULL,
+    instructions TEXT NOT NULL,
+    creator TEXT NOT NULL,
+    creator_email TEXT NOT NULL
+  );
+`;
 
-async function initData() {
-  const stmt = db.prepare(`
-      INSERT INTO meals VALUES (
-         null,
-         @slug,
-         @title,
-         @image,
-         @summary,
-         @instructions,
-         @creator,
-         @creator_email
-      )
-   `);
-
-  for (const meal of dummyMeals) {
-    stmt.run(meal);
+async function createTable() {
+  try {
+    await client.query(createTableQuery);
+    console.log("Table created successfully or already exists");
+  } catch (error) {
+    console.error("Error creating table:", error);
   }
 }
 
-initData();
+const insertMealQuery = `
+  INSERT INTO meals (slug, title, image, summary, instructions, creator, creator_email)
+  VALUES ($1, $2, $3, $4, $5, $6, $7)
+  ON CONFLICT (slug) DO NOTHING;
+`;
+
+async function initData() {
+  try {
+    for (const meal of dummyMeals) {
+      await client.query(insertMealQuery, [
+        meal.slug,
+        meal.title,
+        meal.image,
+        meal.summary,
+        meal.instructions,
+        meal.creator,
+        meal.creator_email,
+      ]);
+    }
+    console.log("Dummy data inserted successfully");
+  } catch (error) {
+    console.error("Error inserting dummy data:", error);
+  }
+}
+
+async function initializeDatabase() {
+  await createTable();
+  await initData();
+}
+
+initializeDatabase();
