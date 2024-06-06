@@ -33,13 +33,14 @@
   margin: 0;
   font-size: 3.5rem;
   text-transform: uppercase;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
 }
 
 .page_creator__OAZ_v {
   font-size: 1.5rem;
-  color: #cfa69b;
+  color: #060606;
+  font-weight: bold;
   font-style: italic;
 }
 
@@ -126,6 +127,14 @@
   }
   100% {
     opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .page_image__TX6Bw {
+    /* transform: none; Reset transformations on smaller screens */
+    position: static; /* Reset positioning */
+    opacity: 1; /* Ensure images are visible */
   }
 }
 

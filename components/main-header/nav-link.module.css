@@ -21,3 +21,16 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@media (max-width: 678px) {
+  .link {
+    text-decoration: none;
+    color: #ddd6cb;
+    font-weight: bold;
+    width: 100px;
+  }
+  .active {
+    margin-left: -105px;
+    width: 100px!;
+  }
+}

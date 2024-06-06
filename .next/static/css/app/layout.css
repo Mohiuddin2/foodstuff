@@ -60,6 +60,7 @@ body {
   width: 100%;
   height: auto;
 }
+
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./components/main-header/main-header.module.css ***!
   \*****************************************************************************************************************************************************************************************************************************************************************************************/
@@ -94,7 +95,7 @@ body {
   text-decoration: none;
   color: #ddd6cb;
   font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 0.15rem;
   text-transform: uppercase;
   font-size: 1.5rem;
@@ -105,6 +106,16 @@ body {
   height: 5rem;
   object-fit: contain;
   filter: drop-shadow(0 0 0.75rem rgba(0, 0, 0, 0.5));
+}
+
+@media (max-width: 768px) {
+  .main-header_header__T4P4x {
+    display: flex;
+    /* align-items: center; */
+  }
+  .main-header_NextLevel__K6ds2 {
+    display: none;
+  }
 }
 
 /*!**************************************************************************************************************************************************************************************************************************************************************************************!*\
@@ -133,3 +144,17 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@media (max-width: 678px) {
+  .nav-link_link___P2r4 {
+    text-decoration: none;
+    color: #ddd6cb;
+    font-weight: bold;
+    width: 100px;
+  }
+  .nav-link_active__2Dd3_ {
+    margin-left: -105px;
+    width: 100px!;
+  }
+}
+
