@@ -35,16 +35,19 @@ export default async function MealDetailsPage({ params }) {
             // src={`https://maxschwarzmueller-nextjs-demo-users-image.s3.amazonaws.com/${meal.image}`}
             src={`https://mohiuddinextjs.s3.ap-south-1.amazonaws.com${meal.rows[0].image}`}
             // src={meal.image}
-            alt={meal.title}
+            alt={meal.rows[0].title}
             fill
           />
         </div>
         <div className={classes.headerText}>
-          <h1>{meal.title}</h1>
+          <h1>{meal.rows[0].title}</h1>
           <p className={classes.creator}>
-            by <a href={`mailto:${meal.creator_email}`}>{meal.creator}</a>
+            by{" "}
+            <a href={`mailto:${meal.rows[0].creator_email}`}>
+              {meal.rows[0].creator}
+            </a>
           </p>
-          <p className={classes.summary}>{meal.summary}</p>
+          <p className={classes.summary}>{meal.rows[0].summary}</p>
         </div>
       </header>
       <main>
