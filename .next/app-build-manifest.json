@@ -1,10 +1,10 @@
 {
   "pages": {
-    "/meals/page": [
+    "/meals/[mealSlug]/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/meals/page.css",
-      "static/chunks/app/meals/page.js"
+      "static/css/app/meals/[mealSlug]/page.css",
+      "static/chunks/app/meals/[mealSlug]/page.js"
     ],
     "/meals/error": [
       "static/chunks/webpack.js",
@@ -27,16 +27,17 @@
       "static/chunks/main-app.js",
       "static/chunks/app/not-found.js"
     ],
-    "/meals/share/page": [
+    "/meals/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/app/meals/share/page.css",
-      "static/chunks/app/meals/share/page.js"
+      "static/css/app/meals/page.css",
+      "static/chunks/app/meals/page.js"
     ],
-    "/meals/share/error": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/meals/share/error.js"
+      "static/css/app/page.css",
+      "static/chunks/app/page.js"
     ]
   }
 }

@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
-import { getMeal } from "@/lib/meals_backup";
+import { getMeal } from "@/lib/meals";
 import classes from "./page.module.css";
 
 export async function generateMetadata({ params }) {
   const meal = getMeal(params.mealSlug);
 
-  console.log("Meals", params.mealSlug);
+  // console.log("Meals", params.mealSlug);
   if (!meal) {
     notFound();
   }
@@ -18,19 +18,14 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function MealDetailsPage({ params }) {
-  const meal = getMeal(params.mealSlug);
+export default async function MealDetailsPage({ params }) {
+  const meal = await getMeal(params.mealSlug);
 
   if (!meal) {
     notFound();
   }
 
-  meal.instructions = meal.instructions.replace(/\n/g, "<br />");
-
-  console.log(
-    "image from mx---",
-    `https://ugem.s3.ap-south-1.amazonaws.com${meal.image}`
-  );
+  meal.instructions = meal.rows[0].instructions.replace(/\n/g, "<br />");
 
   return (
     <>
@@ -38,7 +33,7 @@ export default function MealDetailsPage({ params }) {
         <div className={classes.image}>
           <Image
             // src={`https://maxschwarzmueller-nextjs-demo-users-image.s3.amazonaws.com/${meal.image}`}
-            src={`https://mohiuddinextjs.s3.ap-south-1.amazonaws.com${meal.image}`}
+            src={`https://mohiuddinextjs.s3.ap-south-1.amazonaws.com${meal.rows[0].image}`}
             // src={meal.image}
             alt={meal.title}
             fill
